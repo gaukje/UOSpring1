@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgaver</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>Oppgave 1 - gjennomsnittstemperatur hver måned</h1>
+Skriv måned: <input type="text" id="mnd"/>
+<button id="getTemp"> Trykk her</button>
+<p id="output"></p>
+
+<script type="application/javascript">
+
+    $(() => {
+        $("#getTemp").click(() => {
+            const mnd = $("#mnd").val();
+
+            $.get("/tmp?mnd=" + mnd, temp => {
+                if (temp !== 0) {
+                    $("#output").html("I " + mnd + " var det en gjennomsnittstemperatur på " + temp + " grader.");
+                } else {
+                    $("#output").html("Du har oppgitt ugyldig måned");
+                }
+            })
+        })
+    })
+</script>
+
+
+</body>
+</html>
